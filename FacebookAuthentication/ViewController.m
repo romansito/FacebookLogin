@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-@interface ViewController ()
+@interface ViewController () <FBSDKLoginButtonDelegate>
+
+
 
 @end
 
@@ -16,7 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    // Optional: Place the button in the center of your view.
+    loginButton.center = self.view.center;
+    loginButton.readPermissions =
+    @[@"public_profile", @"email", @"user_friends"];
+    [self.view addSubview:loginButton];
+    
+}
+-(void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    //
 }
 
 - (void)didReceiveMemoryWarning {
